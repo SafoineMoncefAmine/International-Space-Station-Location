@@ -57,8 +57,8 @@ class MapViewController: UIViewController  {
             self.annotation.coordinate = self.issLocation.coordinate
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotation(self.annotation)
+            self.checkIfIssIsNear()
         }
-        self.checkIfIssIsNear()
     }
     
 
