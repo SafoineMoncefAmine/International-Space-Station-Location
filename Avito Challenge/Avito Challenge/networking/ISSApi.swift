@@ -35,4 +35,29 @@ class ISSApi {
         task.resume()
     }
     
+    
+    func actualPassengers(completion : @escaping ([String]) -> Void) {
+        let urlString = "http://api.open-notify.org/astros.json"
+        guard let requestUrl = URL(string:urlString) else { return }
+        let request = URLRequest(url:requestUrl)
+        let task = URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            if error == nil,let usableData = data {
+                let json = try? JSONSerialization.jsonObject(with: usableData, options: [])
+                guard let dictionary = json as? [String: Any] else{
+                    return
+                }
+               
+                let passengers = dictionary["people"] as! NSArray
+                var passengerNames : [String] = []
+                for passenger  in passengers {
+                    let passengerDict = passenger as? [String: String]
+                    let passengerName = passengerDict!["name"]
+                    passengerNames.append(passengerName!)
+                }
+                completion(passengerNames)
+            }
+        }
+        task.resume()
+    }
 }

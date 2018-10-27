@@ -47,5 +47,9 @@ class MapViewController: UIViewController {
         let coordinateRegion = MKCoordinateRegion(center:issLocation.coordinate,latitudinalMeters:regionRadius,longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
+    @IBAction func showIssPassengers(_ sender: Any) {
+        performSegue(withIdentifier: "showPassengers", sender: self)
+    }
 }
 

@@ -22,22 +22,32 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f49-h6-i57">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="637" width="187.5" height="30"/>
                                 <state key="normal" title="Find The ISS"/>
                                 <connections>
                                     <action selector="centerMapOnISS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hVl-E6-hLQ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqB-5W-r3B">
+                                <rect key="frame" x="187.5" y="637" width="187.5" height="30"/>
+                                <state key="normal" title="Show Passengers"/>
+                                <connections>
+                                    <action selector="showIssPassengers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVc-2c-Ahr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="CqB-5W-r3B" firstAttribute="leading" secondItem="f49-h6-i57" secondAttribute="trailing" id="8eY-dS-Tao"/>
                             <constraint firstItem="1pH-Vt-cZk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FoM-x3-qiA"/>
+                            <constraint firstItem="CqB-5W-r3B" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="K4H-vc-Hjb"/>
                             <constraint firstItem="f49-h6-i57" firstAttribute="top" secondItem="1pH-Vt-cZk" secondAttribute="bottom" id="OY2-Wh-ZJX"/>
-                            <constraint firstItem="f49-h6-i57" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Q8b-FM-htK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="f49-h6-i57" secondAttribute="bottom" id="Sdx-UX-wxS"/>
                             <constraint firstItem="1pH-Vt-cZk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T5l-K6-rdt"/>
                             <constraint firstItem="f49-h6-i57" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="W8S-l2-Oh1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1pH-Vt-cZk" secondAttribute="trailing" id="gG3-JT-6Px"/>
+                            <constraint firstItem="CqB-5W-r3B" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ijp-fJ-juD"/>
+                            <constraint firstItem="CqB-5W-r3B" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="nXN-vX-tHY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -51,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="962" y="-616"/>
         </scene>
-        <!--View Controller-->
+        <!--Passenger List View Controller-->
         <scene sceneID="upe-Vx-xry">
             <objects>
-                <viewController id="wKD-57-eFq" sceneMemberID="viewController">
+                <viewController id="wKD-57-eFq" customClass="PassengerListViewController" customModule="Avito_Challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oyp-Ux-ydj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,6 +72,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sH1-AL-ehx">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="KqM-ev-Dm3">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KqM-ev-Dm3" id="cHQ-Tp-8iP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,6 +93,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RXS-b8-2RV"/>
                     </view>
+                    <connections>
+                        <outlet property="passengersTableView" destination="sH1-AL-ehx" id="ue8-0c-DwM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAZ-Y4-a8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

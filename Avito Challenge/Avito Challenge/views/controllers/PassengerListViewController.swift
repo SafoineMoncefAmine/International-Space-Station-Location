@@ -10,10 +10,26 @@ import UIKit
 
 class PassengerListViewController: UIViewController {
 
-    var passengers : [String] = []
+
+    @IBOutlet weak var passengersTableView: UITableView!
+    
+    var passengers : [String] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.passengersTableView.reloadData()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configure()
+        ISSApi.shared.actualPassengers { (passengers) in
+            self.passengers = passengers
+        }
+    }
+    func configure() {
+        self.passengersTableView.dataSource = self
+        self.passengersTableView.delegate = self
     }
 
 }
@@ -24,10 +40,15 @@ extension PassengerListViewController : UITableViewDataSource , UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RepoTableViewCell", for: indexPath) as! RepoTableViewCell
-        cell.configure(repository: self.repos[indexPath.row])
-        return cell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? UITableViewCell
+        
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
+        }
+        
+        cell!.textLabel?.text = passengers[indexPath.row]
+        
+        return cell!
     }
-    
     
 }
