@@ -35,9 +35,14 @@
                                     <action selector="showIssPassengers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVc-2c-Ahr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPP-eL-WeT">
+                                <rect key="frame" x="317" y="64" width="58" height="43"/>
+                                <color key="backgroundColor" red="0.91955167055130005" green="0.25894960761070251" blue="0.2806476354598999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tPP-eL-WeT" secondAttribute="trailing" id="0zs-hO-h0r"/>
                             <constraint firstItem="CqB-5W-r3B" firstAttribute="leading" secondItem="f49-h6-i57" secondAttribute="trailing" id="8eY-dS-Tao"/>
                             <constraint firstItem="1pH-Vt-cZk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FoM-x3-qiA"/>
                             <constraint firstItem="CqB-5W-r3B" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="K4H-vc-Hjb"/>
@@ -45,6 +50,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="f49-h6-i57" secondAttribute="bottom" id="Sdx-UX-wxS"/>
                             <constraint firstItem="1pH-Vt-cZk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T5l-K6-rdt"/>
                             <constraint firstItem="f49-h6-i57" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="W8S-l2-Oh1"/>
+                            <constraint firstItem="tPP-eL-WeT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="e77-Ob-FY8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1pH-Vt-cZk" secondAttribute="trailing" id="gG3-JT-6Px"/>
                             <constraint firstItem="CqB-5W-r3B" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ijp-fJ-juD"/>
                             <constraint firstItem="CqB-5W-r3B" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="nXN-vX-tHY"/>
@@ -53,13 +59,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="vo2-rw-XLG"/>
                     <connections>
+                        <outlet property="isNearButton" destination="tPP-eL-WeT" id="ifz-cM-5p9"/>
                         <outlet property="mapView" destination="1pH-Vt-cZk" id="4HY-fu-gqX"/>
                         <segue destination="wKD-57-eFq" kind="show" identifier="showPassengers" id="Ca1-g2-V1N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="962" y="-616"/>
+            <point key="canvasLocation" x="960.79999999999995" y="-616.64167916041981"/>
         </scene>
         <!--Passenger List View Controller-->
         <scene sceneID="upe-Vx-xry">
