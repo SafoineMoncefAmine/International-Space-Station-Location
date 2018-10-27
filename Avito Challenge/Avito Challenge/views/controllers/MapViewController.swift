@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController  {
+class MapViewController: UIViewController , CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -38,16 +38,19 @@ class MapViewController: UIViewController  {
         locationManager.delegate = self
     }
     
-    func checkIfIssIsNear() -> Bool {
+    func checkIfIssIsNear() {
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         if locationManager.location!.distance(from: issLocation) > issNearRegionRadius {
-            self.isNearButton.backgroundColor = UIColor.red
+            DispatchQueue.main.async {
+                self.isNearButton.backgroundColor = UIColor.red
+            }
         }else {
-            self.isNearButton.backgroundColor = UIColor.green
+            DispatchQueue.main.async {
+                self.isNearButton.backgroundColor = UIColor.green
+            }
         }
-        return true
     }
     
     @objc private func updateIssLocation(){
@@ -71,9 +74,5 @@ class MapViewController: UIViewController  {
         performSegue(withIdentifier: "showPassengers", sender: self)
     }
     
-
 }
 
-extension MapViewController : CLLocationManagerDelegate {
-    
-}
