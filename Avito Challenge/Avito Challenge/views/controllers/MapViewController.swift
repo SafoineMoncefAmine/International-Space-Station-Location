@@ -36,19 +36,21 @@ class MapViewController: UIViewController , CLLocationManagerDelegate {
     
     func configure() {
         locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     func checkIfIssIsNear() {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        if locationManager.location!.distance(from: issLocation) > issNearRegionRadius {
-            DispatchQueue.main.async {
-                self.isNearButton.backgroundColor = UIColor.red
-            }
-        }else {
-            DispatchQueue.main.async {
-                self.isNearButton.backgroundColor = UIColor.green
+        
+        if (CLLocationManager.locationServicesEnabled() && locationManager.location != nil) {
+            if locationManager.location!.distance(from: issLocation) > issNearRegionRadius {
+                DispatchQueue.main.async {
+                    self.isNearButton.backgroundColor = UIColor.red
+                }
+            }else {
+                DispatchQueue.main.async {
+                    self.isNearButton.backgroundColor = UIColor.green
+                }
             }
         }
     }
@@ -57,9 +59,11 @@ class MapViewController: UIViewController , CLLocationManagerDelegate {
         ISSApi.shared.getCurrentISSLocation { (latitude, longitude) -> Void in
             self.latitude = latitude
             self.longitude = longitude
-            self.annotation.coordinate = self.issLocation.coordinate
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            self.mapView.addAnnotation(self.annotation)
+            DispatchQueue.main.async {
+                self.annotation.coordinate = self.issLocation.coordinate
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                self.mapView.addAnnotation(self.annotation)
+            }
             self.checkIfIssIsNear()
         }
     }
