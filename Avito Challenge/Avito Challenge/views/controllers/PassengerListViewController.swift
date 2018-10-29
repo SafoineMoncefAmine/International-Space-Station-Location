@@ -31,10 +31,10 @@ class PassengerListViewController: UIViewController {
         self.passengersTableView.dataSource = self
         self.passengersTableView.delegate = self
     }
-
 }
 
 extension PassengerListViewController : UITableViewDataSource , UITableViewDelegate{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.passengers.count
     }
@@ -44,5 +44,4 @@ extension PassengerListViewController : UITableViewDataSource , UITableViewDeleg
         cell!.textLabel?.text = passengers[indexPath.row]
         return cell!
     }
-    
 }
