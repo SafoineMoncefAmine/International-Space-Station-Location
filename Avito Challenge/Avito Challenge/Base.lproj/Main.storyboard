@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pH-Vt-cZk" customClass="MKMapView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="576"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPP-eL-WeT">
@@ -29,25 +29,31 @@
                                 </constraints>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Vfz-Nx-zTB">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="640" width="375" height="27"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f49-h6-i57">
-                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Find The ISS"/>
                                         <connections>
                                             <action selector="centerMapOnISS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hVl-E6-hLQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqB-5W-r3B">
-                                        <rect key="frame" x="131.5" y="0.0" width="112" height="30"/>
+                                        <rect key="frame" x="131.5" y="0.0" width="112" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Show Passengers"/>
                                         <connections>
                                             <action selector="showIssPassengers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVc-2c-Ahr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-EB-IjH">
-                                        <rect key="frame" x="262.5" y="0.0" width="112.5" height="30"/>
+                                        <rect key="frame" x="262.5" y="0.0" width="112.5" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Next Pass Times"/>
+                                        <connections>
+                                            <action selector="nextPassTimes:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wnf-bX-Qi3"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -71,11 +77,52 @@
                         <outlet property="isNearButton" destination="tPP-eL-WeT" id="ifz-cM-5p9"/>
                         <outlet property="mapView" destination="1pH-Vt-cZk" id="4HY-fu-gqX"/>
                         <segue destination="wKD-57-eFq" kind="show" identifier="showPassengers" id="Ca1-g2-V1N"/>
+                        <segue destination="ORl-f8-iZn" kind="show" identifier="showNextPassTimes" id="TRG-Ox-r7Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="960.79999999999995" y="-616.64167916041981"/>
+        </scene>
+        <!--Next Pass Times-->
+        <scene sceneID="elM-5L-Roc">
+            <objects>
+                <viewController title="Next Pass Times" id="ORl-f8-iZn" customClass="NextPassTimesViewController" customModule="Avito_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L2h-vG-Z0E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Peq-kV-1uJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="U0n-32-Hue">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U0n-32-Hue" id="QIi-1O-r2H">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J5j-6F-jCP" firstAttribute="bottom" secondItem="Peq-kV-1uJ" secondAttribute="bottom" id="05M-jk-iHw"/>
+                            <constraint firstItem="Peq-kV-1uJ" firstAttribute="leading" secondItem="J5j-6F-jCP" secondAttribute="leading" id="0P5-Lh-6f0"/>
+                            <constraint firstItem="Peq-kV-1uJ" firstAttribute="top" secondItem="J5j-6F-jCP" secondAttribute="top" id="O82-lo-bxM"/>
+                            <constraint firstItem="J5j-6F-jCP" firstAttribute="trailing" secondItem="Peq-kV-1uJ" secondAttribute="trailing" id="s47-Fw-QaE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="J5j-6F-jCP"/>
+                    </view>
+                    <connections>
+                        <outlet property="nextPassTimesTableView" destination="Peq-kV-1uJ" id="U48-aP-JxE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VzE-JA-a1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910" y="-271"/>
         </scene>
         <!--ISS Current Passengers-->
         <scene sceneID="upe-Vx-xry">
@@ -115,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAZ-Y4-a8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1879" y="-1253"/>
+            <point key="canvasLocation" x="1910" y="-1170"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UzD-XL-kb4">

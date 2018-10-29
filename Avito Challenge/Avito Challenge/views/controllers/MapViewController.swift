@@ -83,6 +83,16 @@ class MapViewController: UIViewController {
     }
     
     
+    @IBAction func nextPassTimes(_ sender: Any) {
+        performSegue(withIdentifier: "showNextPassTimes", sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showNextPassTimes" {
+            let vc = segue.destination as! NextPassTimesViewController
+            vc.lan = locationManager.location?.coordinate.latitude
+            vc.lon = locationManager.location?.coordinate.longitude
+        }
+    }
     
 }
 

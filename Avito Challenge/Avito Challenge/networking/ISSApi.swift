@@ -45,12 +45,11 @@ class ISSApi {
         task.resume()
     }
     
-    func nextPassTime(latitude:String, longitude:String, numberOfPass: Int , completion : @escaping ([String : Any]) -> Void) {
+    func nextPassTime(latitude:Double, longitude:Double, numberOfPass: Int , completion : @escaping ([String : Any]) -> Void) {
         
         guard let configurePassTimesURL = configureNextPassesURL(parameters:["lat":latitude,"lon":longitude,"n":"\(numberOfPass)"]) else {
             return
         }
-
         let request = URLRequest(url: configurePassTimesURL)
         let task = URLSession.shared.dataTask(with: request) {
             (data, response, error) in
@@ -62,8 +61,8 @@ class ISSApi {
         task.resume()
     }
     
-    func configureNextPassesURL(parameters:[String:String]) -> URL?  {
-        let request = GET_ISS_NEXT_PASSES_BASE_URL + "?lat=\(parameters["lat"])&lon=\(parameters["lon"])&n=\(parameters["n"])"
+    private func configureNextPassesURL(parameters:[String:Any]) -> URL?  {
+        let request = GET_ISS_NEXT_PASSES_BASE_URL + "?lat=\(parameters["lat"]!)&lon=\(parameters["lon"]!)&n=\(parameters["n"]!)"
         return URL(string:request)
     }
 }

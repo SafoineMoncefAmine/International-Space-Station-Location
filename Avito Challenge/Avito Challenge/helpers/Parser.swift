@@ -28,4 +28,15 @@ class Parser {
         let issCoordonate = (coordonates["latitude"]!,coordonates["longitude"]!)
         return issCoordonate as! (String, String)
     }
+    
+    static func nextPassTimes(json : [String:Any]) -> [Int] {
+        let response = json["response"] as! NSArray
+        var passTimes : [Int] = []
+        for passTime  in response {
+            let passTimeDict = passTime as? [String: Int]
+            let nextpassTime = passTimeDict!["duration"]!
+            passTimes.append(nextpassTime)
+        }
+        return passTimes
+    }
 }
