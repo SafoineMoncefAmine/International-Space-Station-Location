@@ -23,8 +23,8 @@ class PassengerListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        ISSApi.shared.actualPassengers { (passengers) in
-            self.passengers = passengers
+        ISSApi.shared.actualPassengers { (json) in
+            self.passengers = Parser.parsePassengers(json: json)
         }
     }
     func configure() {
@@ -40,14 +40,8 @@ extension PassengerListViewController : UITableViewDataSource , UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? UITableViewCell
-        
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell!.textLabel?.text = passengers[indexPath.row]
-        
         return cell!
     }
     
